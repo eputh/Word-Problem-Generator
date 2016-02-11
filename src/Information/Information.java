@@ -16,7 +16,7 @@ public class Information {
     public ArrayList<Person> names;
     public ArrayList<Item> items;
 
-    public void gatherInput() {
+    public void inputManager() {
         InputManager input = new InputManager();
         input.printWelcomeMessage();
         typeOfProblems = input.promptForOperationTypes();

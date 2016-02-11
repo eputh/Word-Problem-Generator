@@ -24,7 +24,7 @@ public class Worksheet {
     private void createProblems() {
         // collect information
         Information information = new Information();
-        information.gatherInput();
+        information.inputManager();
 
         // calculate how many problems to generate for each operation
         int numProblemsEach = information.numOfProblems/information.typeOfProblems.size(); // number of problems split by operations evenly
