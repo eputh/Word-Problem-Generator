@@ -24,11 +24,24 @@ public class Division extends Operation {
     }
 
     public String createWordProblem(Information info) {
+        pickRandomInfo(info);
         // get a template
         Template templates = new DivTemplate();
         ArrayList<String> opList = templates.getTemplate();
         String wordProblem = opList.get(0);
 
+        // add gathered info into the template
+        wordProblem = wordProblem.replace("#person1", names.get(0).name);
+        String pronoun = names.get(0).gender.toLowerCase().equals("male") ? "He" : "She";
+        wordProblem = wordProblem.replace("#gender1", pronoun);
+        wordProblem = wordProblem.replace("#item", items.get(0).item +"s");
+        wordProblem = wordProblem.replace("#number1", Integer.toString(values.get(values.size()-1))); // get the max value
+        wordProblem = wordProblem.replace("#number2", Integer.toString(values.get(0))); // get the min value
+
+        return wordProblem;
+    }
+
+    private void pickRandomInfo(Information info) {
         // get random names, items, and numbers to plug into the template
         Person person1 = info.generateRandName();
         Item item = info.generateRandItem();
@@ -41,18 +54,6 @@ public class Division extends Operation {
         values.add(number1); values.add(number2);
         // sort values list
         Collections.sort(values);
-        number1 = values.get(values.size()-1);
-        number2 = values.get(0);
-
-        // add gathered info into the template
-        wordProblem = wordProblem.replace("#person1", person1.name);
-        String pronoun = person1.gender.toLowerCase().equals("male") ? "He" : "She";
-        wordProblem = wordProblem.replace("#gender1", pronoun);
-        wordProblem = wordProblem.replace("#item", item.item +"s");
-        wordProblem = wordProblem.replace("#number1", Integer.toString(number1)); // get the max value
-        wordProblem = wordProblem.replace("#number2", Integer.toString(number2)); // get the min value
-
-        return wordProblem;
     }
 
     public Float checkAnswer() {

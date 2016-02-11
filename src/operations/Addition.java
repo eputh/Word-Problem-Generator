@@ -23,11 +23,23 @@ public class Addition extends Operation {
     }
 
     public String createWordProblem(Information info) {
+        pickRandomInfo(info);
         // get a template
         Template templates = new AddTemplate();
         ArrayList<String> opList = templates.getTemplate();
         String wordProblem = opList.get(0);
 
+        // add gathered info into the template
+        wordProblem = wordProblem.replace("#person1", names.get(0).name);
+        wordProblem = wordProblem.replace("#person2", names.get(1).name);
+        wordProblem = wordProblem.replace("#item", items.get(0).item +"s");
+        wordProblem = wordProblem.replace("#number1", Integer.toString(values.get(0)));
+        wordProblem = wordProblem.replace("#number2", Integer.toString(values.get(1)));
+
+        return wordProblem;
+    }
+
+    private void pickRandomInfo(Information info) {
         // get random names, items, and numbers to plug into the template
         Person person1 = info.generateRandName();
         // add a different person
@@ -45,15 +57,6 @@ public class Addition extends Operation {
         names.add(person1); names.add(person2);
         items.add(item);
         values.add(number1); values.add(number2);
-
-        // add gathered info into the template
-        wordProblem = wordProblem.replace("#person1", person1.name);
-        wordProblem = wordProblem.replace("#person2", person2.name);
-        wordProblem = wordProblem.replace("#item", item.item +"s");
-        wordProblem = wordProblem.replace("#number1", Integer.toString(number1));
-        wordProblem = wordProblem.replace("#number2", Integer.toString(number2));
-
-        return wordProblem;
     }
 
     public Float checkAnswer() {
