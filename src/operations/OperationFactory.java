@@ -3,6 +3,7 @@ package operations;
 /**
  * Created by Emily on 2/10/2016.
  * Design pattern - factory method
+ * Encapsulates the creation of objects
  */
 public class OperationFactory {
 
