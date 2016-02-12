@@ -7,18 +7,27 @@ import java.util.ArrayList;
  */
 public class Worksheet {
 
-    public static void main(String args[]) {
-//        Worksheet sheet = new Worksheet();
-//        sheet.createProblems();
-//        sheet.administerTest();
-//        sheet.outputScore();
+    private ArrayList<Problem> worksheet;
+    private Float score;
+
+    public Worksheet() {
+
         Context context = new Context();
 
         SetUpState startState = new SetUpState();
         startState.doAction(context);
-        ArrayList<Problem> problems = startState.getProblems();
+        worksheet = startState.getProblems();
 
-        StudentState stopState = new StudentState(problems);
+        StudentState stopState = new StudentState(worksheet);
         stopState.doAction(context);
+        score = stopState.getScore();
+    }
+
+    public ArrayList<Problem> getWorksheet() {
+        return worksheet;
+    }
+
+    public Float getScore() {
+        return score;
     }
 }

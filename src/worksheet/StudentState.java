@@ -62,8 +62,8 @@ public class StudentState implements State {
         return "Student State";
     }
 
-    public Integer getScore() {
-        return currentScore;
+    public Float getScore() {
+        return (float)currentScore/problems.size()*100;
     }
 
 }
